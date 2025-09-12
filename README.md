@@ -49,63 +49,63 @@ The pipeline outputs **pain points, differentiators, ROI simulations, and dashbo
 
 ## 📂 Repo Structure
 
+```text
 bloom-pipeline/
-├── README.md                  # Project overview + setup instructions
-├── pyproject.toml              # Poetry dependency file (Python 3.12)
-├── poetry.lock                 # Auto-generated lockfile
-├── .gitignore                  # Ignore .env, __pycache__, data dumps, etc.
+├── README.md                  # Project overview + setup
+├── pyproject.toml              # Poetry dependencies
+├── .gitignore                  # Ignore .env, __pycache__, data dumps
 ├── .env.example                # Template for secrets (DB creds, API keys)
-├── Makefile                    # Dev shortcuts (up, down, fmt, lint, test, init-sql)
-├── docker-compose.yml          # Postgres + pgvector service
+├── Makefile                    # (Optional) shortcuts for common tasks
+├── docker-compose.yml          # Postgres + pgvector
 │
 ├── ingestion/                  # Raw data ingestion
-│   ├── scrape_competitors.py   # Scraper for Sephora/Ulta reviews
-│   ├── load_surveys.py         # Import survey CSV → DB
-│   └── ingest_reports.py       # Parse McKinsey/Sephora reports (manual → structured)
+│   ├── scrape_competitors.py
+│   ├── load_surveys.py
+│   └── ingest_reports.py
 │
 ├── processing/                 # Data cleaning + prep
-│   ├── clean_reviews.py        # Normalize + dedup reviews
-│   ├── embed_reviews.py        # Generate embeddings
-│   └── extract_keywords.py     # Undertone/oxidation keyword tagging
+│   ├── clean_reviews.py
+│   ├── embed_reviews.py
+│   └── extract_keywords.py
 │
-├── agents/                     # AI agents (one file per "role")
-│   ├── ingestion_agent.py      # Pulls reviews/surveys/reports into DB
-│   ├── cleaning_agent.py       # Runs cleaning pipeline
-│   ├── clustering_agent.py     # Groups reviews → clusters
-│   ├── gap_finder_agent.py     # Turns clusters → differentiators
-│   ├── roi_agent.py            # Pricing/profitability simulator
-│   └── decision_log_agent.py   # Records recommendations (optional extension)
+├── agents/                     # AI agents
+│   ├── ingestion_agent.py
+│   ├── cleaning_agent.py
+│   ├── clustering_agent.py
+│   ├── gap_finder_agent.py
+│   ├── roi_agent.py
+│   └── decision_log_agent.py   # optional
 │
-├── nlp/                        # NLP & LLM helpers
-│   ├── sentiment.py            # Sentiment classifier (HuggingFace)
-│   └── summarize_cluster.py    # Cluster labeling (LLM/heuristics)
+├── nlp/                        # NLP helpers
+│   ├── sentiment.py
+│   └── summarize_cluster.py
 │
-├── dashboard/                  # Founder-facing Streamlit UI
-│   └── app.py                  # Tabs: Pain Points, ROI, Influencers, Shade Quiz
+├── dashboard/                  # Streamlit UI
+│   └── app.py
 │
 ├── reports/                    # Generated outputs
-│   ├── weekly_report.py        # Markdown → PDF report
-│   └── templates/              # Report templates
+│   ├── weekly_report.py
+│   └── templates/
 │
 ├── sql/                        # DB migrations + views
-│   ├── 001_init.sql            # Schemas bloom_raw/core/analytics
-│   ├── 010_reviews.sql         # Raw + clean reviews tables
-│   ├── 020_clusters.sql        # Clusters + assignments
-│   ├── 030_actions.sql         # Differentiator actions
-│   ├── 040_roi.sql             # ROI inputs + outputs
-│   └── refresh_all.sql         # Refresh all mats/views in order
+│   ├── 001_init.sql
+│   ├── 010_reviews.sql
+│   ├── 020_clusters.sql
+│   ├── 030_actions.sql
+│   ├── 040_roi.sql
+│   └── refresh_all.sql
 │
 ├── utils/                      # Shared utilities
-│   ├── db.py                   # DB connector (SQLAlchemy/psycopg2)
-│   ├── config.py               # Loads .env vars
-│   └── logging.py              # Standard logging
+│   ├── db.py
+│   ├── config.py
+│   └── logging.py
 │
 └── tests/                      # Unit + integration tests
     ├── test_cleaning.py
     ├── test_clustering.py
     ├── test_roi.py
     └── test_end_to_end.py
-
+```
 
 ---
 
@@ -123,26 +123,26 @@ cd bloom-pipeline
 ```
 
 ### 2) Python and Poetry
-# install Python 3.12.x (pick latest 3.12)
+#### install Python 3.12.x (pick latest 3.12)
 pyenv install 3.12.5
 pyenv local 3.12.5
 
-# Poetry
+#### Poetry
 pip install --upgrade pip
 pip install poetry
 
-# install deps from pyproject.toml
+#### install deps from pyproject.toml
 poetry install
 
-# install Python 3.12.x (pick latest 3.12)
+#### install Python 3.12.x (pick latest 3.12)
 pyenv install 3.12.5
 pyenv local 3.12.5
 
-# Poetry
+#### Poetry
 pip install --upgrade pip
 pip install poetry
 
-# install deps from pyproject.toml
+#### install deps from pyproject.toml
 poetry install
 
 ### 3) Database and Docker
