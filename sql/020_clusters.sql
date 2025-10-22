@@ -11,5 +11,4 @@ CREATE TABLE IF NOT EXISTS bloom_analytics.clusters (
     created_at TIMESTAMP DEFAULT NOW(), --When cluster created
     updated_at TIMESTAMP DEFAULT NOW() --When cluster updated
 
-
 );

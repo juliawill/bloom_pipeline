@@ -1,0 +1,20 @@
+## To start the project
+```
+sudo docker compose up --build -d
+```
+
+## To stop the project
+```
+sudo docker compose down
+```
+
+## To run a command in docker
+```
+sudo docker exec -it <container_name> poetry example_command.py
+sudo docker exec -it bloom_db psql -U bloom -d bloom
+```
+
+## To see the volumes
+```
+sudo docker volumes ps
+```
